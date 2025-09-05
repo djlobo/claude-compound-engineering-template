@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Edit, Write, Bash, TodoWrite, Glob, Grep]
+allowed-tools: Read, Edit, Write, Bash, TodoWrite, Glob, Grep
 argument-hint: [task-id]
 description: Implement specific task from feature plan with focused execution
 model: claude-3-5-sonnet-20241022

@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Bash(npm:*), Bash(npx:*), Bash(yarn:*), Bash(pnpm:*), Read, Write, Edit, TodoWrite]
+allowed-tools: Bash(npm:*), Bash(npx:*), Bash(yarn:*), Bash(pnpm:*), Read, Write, Edit, TodoWrite
 description: Run tests with intelligent analysis and plain-language feedback
 ---
 

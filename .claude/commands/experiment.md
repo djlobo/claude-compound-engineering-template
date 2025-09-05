@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Write, Edit, Bash(git:*), TodoWrite, Glob, Grep]
+allowed-tools: Read, Write, Edit, Bash(git:*), TodoWrite, Glob, Grep
 argument-hint: [hypothesis]
 description: Safe experimentation with git branching and structured learning capture
 ---

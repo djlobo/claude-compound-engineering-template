@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Write, Glob, Grep, TodoWrite]
+allowed-tools: Read, Write, Glob, Grep, TodoWrite
 argument-hint: [feature-name]
 description: Create structured feature plan with systematic approach
 model: claude-3-opus-20241115

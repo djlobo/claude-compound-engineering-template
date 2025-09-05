@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Bash(git:*), Write, Grep, Glob, TodoWrite]
+allowed-tools: Read, Bash(git:*), Write, Grep, Glob, TodoWrite
 description: Comprehensive code quality analysis with systematic checklist
 model: claude-3-opus-20241115
 ---

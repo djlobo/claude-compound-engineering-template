@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Write, Edit, Bash(git:*), TodoWrite, Glob, Grep]
+allowed-tools: Read, Write, Edit, Bash(git:*), TodoWrite, Glob, Grep
 description: Systematic learning capture and workflow improvement analysis
 ---
 

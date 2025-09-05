@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Bash(git:*), Bash(npm:*), Read, Write, TodoWrite]
+allowed-tools: Bash(git:*), Bash(npm:*), Read, Write, TodoWrite
 argument-hint: [commit-message]
 description: Create conventional commit with quality gates and co-authorship
 ---

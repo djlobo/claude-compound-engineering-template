@@ -1,5 +1,5 @@
 ---
-allowed-tools: [Read, Bash(git:*)]
+allowed-tools: Read, Bash(git:*)
 description: Complete reference for your Claude Code coaching system and commands
 ---
 
