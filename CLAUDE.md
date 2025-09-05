@@ -9,7 +9,7 @@
 - Edit files, run bash commands, create commits from terminal
 - Use slash commands, hooks, subagents for workflow automation
 - Access hierarchical memory (user → project → feature)
-- Switch between models: Opus (planning) ↔ Sonnet (implementation)
+- Use latest Claude models (Sonnet 4 for implementation, Opus 4.1 for complex reasoning)
 - TodoWrite for task tracking and progress visibility
 
 ### Your Limitations:

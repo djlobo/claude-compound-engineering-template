@@ -1,95 +1,138 @@
----
-allowed-tools: Bash(git:*), Bash(npm:*), Read, Write, TodoWrite
-argument-hint: [commit-message]
-description: Create conventional commit with quality gates and co-authorship
----
+# Commit - Smart Git Commit with Quality Gates
 
-# Smart Git Commit with Quality Gates
+Create conventional commits with automatic quality checks, proper formatting, and co-authorship.
 
-I'll help you create a high-quality commit with automatic checks and proper formatting.
+## Instructions
+
+1. **Run Pre-Commit Quality Gates**
+   - Execute tests to ensure all pass
+   - Perform basic secret scanning
+   - Validate that changes are ready for commit
+
+2. **Review Changes**
+   - Show git status and staged changes
+   - Display diff summary for manual review
+   - Highlight any large file changes
+
+3. **Format Commit Message**
+   - Ensure conventional commit format (feat:, fix:, docs:, etc.)
+   - Auto-detect commit type from changed files if needed
+   - Add proper scope and description
+
+4. **Create Commit**
+   - Generate commit with co-authorship attribution
+   - Provide next action recommendations
+   - Track commit statistics for learning
 
 **Commit message**: $ARGUMENTS
 
 ## Step 1: Pre-Commit Quality Gates
-Let me run the essential quality checks first:
 
-### Test Validation
-!`if [ -f "package.json" ] && grep -q "test" package.json; then
+**Running essential quality checks:**
+!`echo "🔍 Quality Gate Checks:"
+
+# Test validation
+if [ -f "package.json" ] && grep -q '"test"' package.json && ! grep -q '"test": "echo' package.json; then
   echo "🧪 Running tests before commit..."
-  npm test || (echo "❌ Tests failing - must fix before commit" && exit 1)
-  echo "✅ All tests passing!"
+  if npm test; then
+    echo "✅ All tests passing!"
+  else
+    echo "❌ Tests failing - must fix before commit"
+    exit 1
+  fi
 else
   echo "ℹ️  No test script found - skipping test validation"
-fi`
+fi
 
-### Security Check (Basic Secret Scan)
-!`echo "🔒 Checking for potential secrets..."
-if git diff --cached | grep -iE "(api_key|secret|password|token|private_key)" > /dev/null; then
+# Basic secret scan
+echo "🔒 Checking for potential secrets..."
+if git diff --cached | grep -iE "(api_key|secret|password|token|private_key|auth.*key)" > /dev/null; then
   echo "⚠️  WARNING: Potential secrets detected in staged changes!"
   echo "Please review and remove any sensitive information before committing."
-  git diff --cached | grep -iE "(api_key|secret|password|token|private_key)" || true
 else
   echo "✅ No obvious secrets detected"
 fi`
 
 ## Step 2: Review Changes
-Here's what will be committed:
 
-### Git Status
-!`git status --porcelain || echo "No git repository found"`
+**What will be committed:**
+!`echo "📋 Git Status:"
+git status --porcelain 2>/dev/null || echo "⚠️  No git repository found"
 
-### Staged Changes Summary
-!`git diff --cached --stat 2>/dev/null || echo "No staged changes found"`
+echo -e "\n📊 Staged Changes Summary:"
+git diff --cached --stat 2>/dev/null || echo "⚠️  No staged changes found"
 
-## Step 3: Commit Message Formatting
-Let me ensure your commit follows conventional commit format:
+echo -e "\n📈 Change Impact:"
+LINES_CHANGED=$(git diff --cached --stat 2>/dev/null | tail -1 | grep -oE '[0-9]+' | head -1 || echo "0")
+FILES_CHANGED=$(git diff --cached --name-only 2>/dev/null | wc -l || echo "0")
+echo "  📄 Files modified: $FILES_CHANGED"
+echo "  📝 Lines changed: ${LINES_CHANGED:-0}"
 
+if [ "${LINES_CHANGED:-0}" -gt 200 ]; then
+  echo "  💡 Large changeset - consider smaller commits next time"
+fi`
+
+## Step 3: Commit Creation
+
+**Creating conventional commit:**
 !`MESSAGE="$ARGUMENTS"
+
+# Format as conventional commit if not already
 if echo "$MESSAGE" | grep -qE "^(feat|fix|docs|style|refactor|test|chore|build|ci|perf|revert)(\(.+\))?!?:"; then
-  echo "✅ Already in conventional commit format: $MESSAGE"
+  echo "✅ Message is already in conventional format: $MESSAGE"
+  FINAL_MESSAGE="$MESSAGE"
 else
   echo "🔄 Converting to conventional commit format..."
-  # Try to detect commit type from changes
+  
+  # Auto-detect commit type from changes
   if git diff --cached --name-only | grep -qE "test|spec"; then
-    MESSAGE="test: $MESSAGE"
+    FINAL_MESSAGE="test: $MESSAGE"
   elif git diff --cached --name-only | grep -qE "\.md$|README|doc"; then
-    MESSAGE="docs: $MESSAGE"  
+    FINAL_MESSAGE="docs: $MESSAGE"  
   elif git diff --cached --name-only | grep -qE "package\.json|\.config\.|\.yml$|\.yaml$"; then
-    MESSAGE="chore: $MESSAGE"
+    FINAL_MESSAGE="chore: $MESSAGE"
+  elif git diff --cached --name-only | grep -qE "fix|bug"; then
+    FINAL_MESSAGE="fix: $MESSAGE"
   else
-    MESSAGE="feat: $MESSAGE"
+    FINAL_MESSAGE="feat: $MESSAGE"
   fi
-  echo "📝 Formatted as: $MESSAGE"
+  echo "📝 Formatted as: $FINAL_MESSAGE"
 fi
 
 # Create the commit
 if git diff --cached --quiet; then
-  echo "⚠️  No staged changes to commit. Use 'git add' to stage files first."
+  echo "⚠️  No staged changes to commit. Use 'git add <files>' to stage changes first."
 else
-  echo "💾 Creating commit..."
-  git commit -m "$MESSAGE
+  echo "💾 Creating commit with co-authorship..."
+  if git commit -m "$FINAL_MESSAGE
 
 🤖 Generated with [Claude Code](https://claude.ai/code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>" && echo "✅ Commit created successfully!"
+Co-Authored-By: Claude <noreply@anthropic.com>"; then
+    echo "✅ Commit created successfully!"
+  else
+    echo "❌ Commit failed - check git status and try again"
+  fi
 fi`
 
 ## Step 4: Next Action Guidance
 
-### Change Summary
-!`LINES_CHANGED=$(git diff HEAD~1 --stat 2>/dev/null | tail -1 | grep -oE '[0-9]+' | head -1 || echo "0")
-echo "📊 Lines changed in this commit: ${LINES_CHANGED:-0}"
-if [ "${LINES_CHANGED:-0}" -gt 200 ]; then
-  echo "💡 Tip: Consider smaller, focused commits for easier review and rollback"
+**Post-commit recommendations:**
+!`echo "🎯 Commit Statistics:"
+if git log -1 --stat 2>/dev/null; then
+  echo -e "\n✅ Latest commit created successfully"
+else
+  echo "⚠️  No recent commit found"
 fi`
 
 ---
 
-**🔄 Next Action Based on Your Progress**:
+**🔄 Next Action Options**:
 
-- **Continue implementation**: Use `/do [next-task-id]` for the next planned task
-- **Quality review**: Use `/review` to analyze the committed changes  
-- **New feature**: Use `/plan [feature-name]` to start planning the next feature
-- **Capture learnings**: Use `/retro` to document insights from this work session
+- **Continue development**: Use `/do [next-task-id]` to implement the next planned task
+- **Quality assurance**: Use `/review` to perform comprehensive code analysis
+- **Start new feature**: Use `/plan [feature-name]` to begin systematic planning  
+- **Capture insights**: Use `/retro` to document lessons learned from this session
+- **Deploy/share**: Push changes with `git push` when ready
 
-**💡 Coaching Tip**: Great commit! This systematic approach ensures quality and maintains a clean git history. Your commit messages help future you understand the changes.
+**💡 Coaching Tip**: Excellent commit discipline! Regular, well-formatted commits create a clear history that helps with debugging, code reviews, and collaboration. This systematic approach builds trust in your codebase.

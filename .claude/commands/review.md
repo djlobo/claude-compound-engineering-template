@@ -1,119 +1,149 @@
----
-allowed-tools: Read, Bash(git:*), Write, Grep, Glob, TodoWrite
-description: Comprehensive code quality analysis with systematic checklist
-model: claude-3-opus-20241115
----
+# Review - Comprehensive Code Quality Analysis
 
-# Comprehensive Code Quality Review
+Perform systematic code quality assessment with detailed checklist and actionable feedback.
 
-I'm now switching to **Opus model** for thorough analysis and systematic quality assessment.
+## Instructions
+
+1. **Analyze Review Scope**
+   - Examine current git changes and staged files
+   - Assess size and complexity of changes
+   - Provide context on what's being reviewed
+
+2. **Systematic Quality Assessment** 
+   - Run comprehensive quality checklist covering all critical areas
+   - Check code structure, testing, security, performance, accessibility
+   - Provide specific findings with file/line references
+
+3. **Generate Actionable Feedback**
+   - Categorize issues by severity (critical, important, nice-to-have)
+   - Provide specific improvement suggestions
+   - Highlight what's working well
+
+4. **Recommend Next Actions**
+   - Give clear approval/rejection status
+   - Suggest specific steps to address issues
+   - Provide guidance on when to re-review
+
+**🔍 Starting comprehensive code quality review...**
 
 ## Step 1: Review Scope Analysis
 
-Let me examine what changes need to be reviewed:
+**Examining changes to review:**
+!`echo "📊 Review Scope Analysis:"
 
-### Current Git Status
-!`if git rev-parse --git-dir > /dev/null 2>&1; then
-  echo "📊 Git Status:"
+if git rev-parse --git-dir > /dev/null 2>&1; then
+  echo "✅ Git repository detected"
+  
+  echo -e "\n📝 Current Status:"
   git status --porcelain
   
-  echo -e "\n📝 Staged Changes:"  
-  git diff --cached --stat 2>/dev/null || echo "No staged changes found"
+  echo -e "\n📋 Staged Changes:"  
+  git diff --cached --stat 2>/dev/null || echo "  No staged changes found"
   
-  echo -e "\n📋 Changed Files:"
-  git diff --cached --name-only 2>/dev/null || echo "No files in staging area"
+  echo -e "\n📄 Files to Review:"
+  git diff --cached --name-only 2>/dev/null || echo "  No files in staging area"
   
-  echo -e "\n🔍 Recent Commits for Context:"
-  git log --oneline -3 2>/dev/null || echo "No recent commits"
-else
-  echo "⚠️  No git repository found. I'll review the current codebase structure instead."
-  echo "📁 Project structure:"
-  find . -type f -name "*.js" -o -name "*.ts" -o -name "*.tsx" -o -name "*.jsx" | head -10
-fi`
-
-### Lines of Code Impact
-!`if git rev-parse --git-dir > /dev/null 2>&1; then
+  echo -e "\n📊 Change Impact:"
   LINES_CHANGED=$(git diff --cached --stat 2>/dev/null | tail -1 | grep -oE '[0-9]+' | head -1 || echo "0")
   FILES_CHANGED=$(git diff --cached --name-only 2>/dev/null | wc -l || echo "0")
-  echo "📊 Review Scope: $FILES_CHANGED files, ${LINES_CHANGED:-0} lines changed"
+  echo "  Files: $FILES_CHANGED | Lines: ${LINES_CHANGED:-0}"
   
   if [ "${LINES_CHANGED:-0}" -gt 500 ]; then
-    echo "⚠️  Large changeset detected. Consider reviewing in smaller chunks."
+    echo "  ⚠️  Large changeset - consider reviewing in smaller chunks"
   fi
+
+  echo -e "\n🔍 Recent Context (last 3 commits):"
+  git log --oneline -3 2>/dev/null || echo "  No recent commits"
+else
+  echo "⚠️  No git repository found"
+  echo "📁 Reviewing current project structure instead"
+  ls -la | head -10
 fi`
 
 ## Step 2: Systematic Quality Analysis
 
-Now I'll conduct a comprehensive review using my systematic checklist:
+**Performing comprehensive review using systematic checklist:**
 
 ### Code Structure & Quality Assessment
-Let me analyze the code structure, naming, and organization:
+!`echo "🔍 Analyzing code structure and quality..."
 
-!`if git diff --cached --name-only 2>/dev/null | head -1 > /dev/null; then
-  echo "🔍 Analyzing code changes..."
-  git diff --cached 2>/dev/null | head -50 || echo "No staged changes to review"
+if git diff --cached --name-only 2>/dev/null | head -1 > /dev/null; then
+  echo "📄 Reviewing code changes:"
+  git diff --cached 2>/dev/null | head -100 || echo "No changes to analyze"
 else
-  echo "ℹ️  No specific changes to review. I'll provide general codebase feedback."
+  echo "ℹ️  No specific changes staged - providing general project feedback"
+  find . -name "*.js" -o -name "*.ts" -o -name "*.tsx" -o -name "*.jsx" | head -3
 fi`
 
-### Detailed Quality Checklist
+### Systematic Quality Checklist
 
-I'm now performing a systematic analysis of:
+**📋 Comprehensive Review Areas:**
 
 #### ✅ **Code Quality Standards**
-- Function size and single responsibility principle
-- Clear, descriptive naming conventions
-- Code duplication and DRY principles
-- Proper error handling and edge cases
-- Meaningful comments for complex logic
+- **Function Size**: Are functions focused and reasonably sized (< 50 lines)?
+- **Naming**: Are variables, functions, and classes clearly named?
+- **DRY Principle**: Is there unnecessary code duplication?  
+- **Error Handling**: Are errors handled gracefully with clear messages?
+- **Comments**: Are complex logic sections explained?
 
 #### ✅ **Testing & Reliability**
-- Unit test presence and coverage
-- Edge case and error condition testing
-- Integration point validation
-- Test maintainability and clarity
+- **Test Coverage**: Do new features have corresponding tests?
+- **Test Quality**: Are both happy path and edge cases covered?
+- **Error Scenarios**: Are error conditions tested?
+- **Integration**: Are integration points validated?
 
-#### ✅ **Security & Safety**
-- No exposed secrets or credentials
-- Input validation and sanitization
-- Authentication and authorization checks
-- Protection against common vulnerabilities
+#### ✅ **Security & Safety**  
+- **Secrets**: No hardcoded credentials or API keys?
+- **Input Validation**: User inputs properly validated and sanitized?
+- **Authentication**: Access controls properly implemented?
+- **Vulnerabilities**: No obvious injection or XSS risks?
 
 #### ✅ **Performance & Maintainability**
-- Efficient algorithms and data structures
-- Database query optimization (if applicable)
-- Memory usage and resource management
-- Adherence to project conventions
+- **Efficiency**: No obvious performance bottlenecks?
+- **Resource Usage**: Reasonable memory and processing demands?
+- **Database**: Queries optimized and indexed appropriately?
+- **Conventions**: Code follows established project patterns?
 
-#### ✅ **Accessibility & UX** (when applicable)
-- Semantic HTML and ARIA labels
-- Keyboard navigation support
-- Color contrast and responsive design
-- User-friendly error handling
+#### ✅ **User Experience & Accessibility** (when applicable)
+- **Semantic HTML**: Proper HTML structure and ARIA labels?
+- **Keyboard Navigation**: All functionality accessible via keyboard?
+- **Visual Design**: Adequate color contrast and text sizing?
+- **Error UX**: User-friendly error messages and recovery paths?
 
-## Step 3: Review Results & Recommendations
+## Step 3: Detailed Review Results
 
-Based on my systematic analysis, here are my findings:
+**🎯 Review Findings:**
 
-### 🎯 **Overall Assessment**
-[I'll provide specific feedback based on the actual code being reviewed]
+Based on systematic analysis of the changes:
 
-### 📝 **Specific Recommendations**
-[Detailed, actionable suggestions with file/line references]
-
-### 🏆 **What's Working Well**
-[Positive observations and good practices to highlight]
+### 🏆 **Strengths Identified**
+[I'll highlight specific positive aspects of the code]
 
 ### ⚠️ **Areas for Improvement**
-[Prioritized list of issues to address]
+[I'll provide specific, actionable feedback with priorities]
+
+### 🔧 **Specific Recommendations**
+[Detailed suggestions with file/line references where applicable]
+
+## Step 4: Review Decision & Next Steps
+
+**Review Status Assessment:**
+!`echo "📊 Review Summary:"
+if git diff --cached --quiet; then
+  echo "  ℹ️  No staged changes to review"
+else
+  echo "  ✅ Changes analyzed systematically"
+  echo "  📋 Feedback provided above"
+fi`
 
 ---
 
-**🔄 Next Action Based on Review Results**:
+**🔄 Review Decision & Next Actions:**
 
-- **✅ Review Approved**: Ready to `/commit [message]` these high-quality changes
-- **⚠️ Minor Issues**: Address the suggestions above, then `/commit` when ready
-- **❌ Major Issues**: Fix critical problems first, then `/review` again for validation
-- **🧪 Uncertain Areas**: Use `/experiment [hypothesis]` to test risky approaches
+- **✅ Approved for Commit**: Code meets quality standards → Ready for `/commit [message]`
+- **⚠️ Minor Issues Found**: Small improvements recommended → Address feedback, then `/commit`
+- **❌ Major Issues Identified**: Significant problems need fixing → Address critical issues, then `/review` again  
+- **🔬 Uncertain Areas**: Complex changes need validation → Use `/experiment` to test approaches
+- **📚 Learning Opportunity**: Use `/retro` to capture insights from this review
 
-**💡 Coaching Tip**: Systematic code review catches issues early and builds quality habits. Even small improvements compound over time to create better codebases!
+**💡 Coaching Tip**: Systematic code review builds quality habits and catches issues early when they're cheapest to fix. Even experienced developers benefit from methodical quality assessment - it's not about perfection, it's about continuous improvement!
