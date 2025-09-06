@@ -24,4 +24,4 @@ Git status: !`git status --porcelain 2>/dev/null || echo "No git repository or n
 
 **✅ Test command is working!** This means slash commands are being recognized properly.
 
-**Next step**: Try the main coaching commands like `/help` or `/plan`.
+**Next step**: Try the main coaching commands like `/reference` or `/plan`.

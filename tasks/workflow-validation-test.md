@@ -46,7 +46,7 @@
 - [ ] Validate workflow improvement suggestions
 
 ### Phase 7: Help System
-- [ ] Use `/help` command
+- [ ] Use `/reference` command
 - [ ] Verify capability map display
 - [ ] Check command reference completeness
 - [ ] Validate next action suggestions

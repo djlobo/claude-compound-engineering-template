@@ -80,7 +80,7 @@ nudge_intensity: "coaching"  # coaching/normal/minimal
 
 ### Learning Commands:
 - `/learn` - Capture insights and update memory files
-- `/help` - Show this capability map and available commands
+- `/reference` - Show this capability map and available commands
 
 ## Learning & Experimentation
 

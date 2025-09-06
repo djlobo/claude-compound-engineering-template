@@ -17,7 +17,7 @@ Building a systematic, learning-first development environment using Claude Code 
 - [x] Core directory structure (tasks/, .claude/commands/, .claude/agents/)
 
 ### Phase 2: Core Workflow Commands ✅ COMPLETED
-- [x] Slash commands implementation (/plan, /do, /test, /commit, /experiment, /review, /retro, /help)
+- [x] Slash commands implementation (/plan, /do, /test, /commit, /experiment, /review, /retro, /reference)
 - [x] Command-specific coaching and nudging built-in
 - [x] Quality gate integration with hooks
 - [x] Model switching logic (Opus for planning/review, Sonnet for implementation)
@@ -117,7 +117,7 @@ cc-setup/
 │   ├── tasks/claude-code-setup.md (implementation plan)
 │   ├── commands/ (8 slash commands)
 │   │   ├── plan.md, do.md, test.md, commit.md
-│   │   ├── experiment.md, review.md, retro.md, help.md
+│   │   ├── experiment.md, review.md, retro.md, reference.md
 │   └── agents/ (4 specialized subagents)
 │       ├── planner.md, implementer.md
 │       ├── reviewer.md, experimenter.md
@@ -139,10 +139,10 @@ cc-setup/
 - Add project-specific patterns to tasks/_patterns.md as you discover them
 
 ### Getting Started Command
-**Try this first**: `/help` to see your complete coaching system, then `/plan [your-feature]` to start your first guided feature implementation.
+**Try this first**: `/reference` to see your complete coaching system, then `/plan [your-feature]` to start your first guided feature implementation.
 
 ---
 
 **Status**: Phase 1-4 COMPLETE ✅ | Phase 5 Ready for Testing 🧪
 **Last Updated**: 2025-09-05
-**Next Action**: Run `/help` then `/plan hello-api` to test the complete workflow
+**Next Action**: Run `/reference` then `/plan hello-api` to test the complete workflow
