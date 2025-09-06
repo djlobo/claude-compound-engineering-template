@@ -51,29 +51,16 @@ Helping you (David - founder/product manager) build systematic engineering skill
 ## 📊 **Current System Status**
 
 **Configuration Check:**
-!`echo "🔧 Setup Status:"
-echo "📁 Commands: $(ls -1 .claude/commands/*.md 2>/dev/null | wc -l) available"
-echo "📚 Learning system:"
-[ -f "tasks/_experiments.md" ] && echo "  ✅ Experiment tracking ready" || echo "  ⚠️  Experiment tracking needs setup"
-[ -f "tasks/_patterns.md" ] && echo "  ✅ Pattern library ready" || echo "  ⚠️  Pattern library needs setup"  
-[ -f "tasks/_decisions.md" ] && echo "  ✅ Decision log ready" || echo "  ⚠️  Decision log needs setup"`
+!`echo "🔧 Setup Status:"; ls -1 .claude/commands/*.md 2>/dev/null | wc -l | sed 's/^/📁 Commands: /' | sed 's/$/ available/'; echo "📚 Learning system:"; [ -f "tasks/_experiments.md" ] && echo "  ✅ Experiment tracking ready" || echo "  ⚠️  Experiment tracking needs setup"; [ -f "tasks/_patterns.md" ] && echo "  ✅ Pattern library ready" || echo "  ⚠️  Pattern library needs setup"; [ -f "tasks/_decisions.md" ] && echo "  ✅ Decision log ready" || echo "  ⚠️  Decision log needs setup"`
 
 **Git Integration:**
-!`if git rev-parse --git-dir > /dev/null 2>&1; then
-  echo "✅ Git repository detected"
-  echo "📝 Current branch: $(git branch --show-current 2>/dev/null)"
-else
-  echo "⚠️ No git repository - some features limited"
-fi`
+!`if git rev-parse --git-dir > /dev/null 2>&1; then echo "✅ Git repository detected"; git branch --show-current 2>/dev/null | sed 's/^/📝 Current branch: /' || echo "📝 Current branch: unknown"; else echo "⚠️ No git repository - some features limited"; fi`
 
 **Learning Progress:**
-!`echo "📈 Learning System:"
-PATTERNS=$(grep -c "^## Pattern:" "tasks/_patterns.md" 2>/dev/null || echo "0")
-EXPERIMENTS=$(grep -c "^## Experiment:" "tasks/_experiments.md" 2>/dev/null || echo "0")
-DECISIONS=$(grep -c "^## Decision:" "tasks/_decisions.md" 2>/dev/null || echo "0")
-echo "  📋 Patterns documented: $PATTERNS"
-echo "  🧪 Experiments tracked: $EXPERIMENTS"  
-echo "  🎯 Decisions recorded: $DECISIONS"`
+!`echo "📈 Learning System:"`
+!`[ -f "tasks/_patterns.md" ] && echo "  📋 Patterns documented: Available" || echo "  📋 Patterns documented: 0"`
+!`[ -f "tasks/_experiments.md" ] && echo "  🧪 Experiments tracked: Available" || echo "  🧪 Experiments tracked: 0"`
+!`[ -f "tasks/_decisions.md" ] && echo "  🎯 Decisions recorded: Available" || echo "  🎯 Decisions recorded: 0"`
 
 ## 🚀 **Quick Start Workflow**
 
