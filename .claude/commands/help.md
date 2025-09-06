@@ -51,10 +51,17 @@ Helping you (David - founder/product manager) build systematic engineering skill
 ## 📊 **Current System Status**
 
 **Configuration Check:**
-!`echo "🔧 Setup Status:"; ls -1 .claude/commands/*.md 2>/dev/null | wc -l | sed 's/^/📁 Commands: /' | sed 's/$/ available/'; echo "📚 Learning system:"; [ -f "tasks/_experiments.md" ] && echo "  ✅ Experiment tracking ready" || echo "  ⚠️  Experiment tracking needs setup"; [ -f "tasks/_patterns.md" ] && echo "  ✅ Pattern library ready" || echo "  ⚠️  Pattern library needs setup"; [ -f "tasks/_decisions.md" ] && echo "  ✅ Decision log ready" || echo "  ⚠️  Decision log needs setup"`
+!`echo "🔧 Setup Status:"`
+!`echo "📁 Commands: Available in .claude/commands/"`
+!`echo "📚 Learning system:"`
+!`[ -f "tasks/_experiments.md" ] && echo "  ✅ Experiment tracking ready" || echo "  ⚠️  Experiment tracking needs setup"`
+!`[ -f "tasks/_patterns.md" ] && echo "  ✅ Pattern library ready" || echo "  ⚠️  Pattern library needs setup"`
+!`[ -f "tasks/_decisions.md" ] && echo "  ✅ Decision log ready" || echo "  ⚠️  Decision log needs setup"`
 
 **Git Integration:**
-!`if git rev-parse --git-dir > /dev/null 2>&1; then echo "✅ Git repository detected"; git branch --show-current 2>/dev/null | sed 's/^/📝 Current branch: /' || echo "📝 Current branch: unknown"; else echo "⚠️ No git repository - some features limited"; fi`
+!`git rev-parse --git-dir`
+!`echo "✅ Git repository detected"`
+!`git branch --show-current`
 
 **Learning Progress:**
 !`echo "📈 Learning System:"`
