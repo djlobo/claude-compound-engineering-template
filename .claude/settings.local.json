@@ -1,0 +1,94 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(**/*)",
+      "Edit(src/**/*)",
+      "Edit(tests/**/*)",
+      "Edit(reflections/**/*)",
+      "Edit(.claude/**/*)",
+      "Write(.claude/**/*)",
+      "Write(reflections/**/*)",
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "TodoWrite",
+      "Glob(**/*)",
+      "Grep(**/*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:anthropic.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebSearch",
+      "Bash([ -f \"reflections/_experiments.md\" ])",
+      "Bash([ -f \"reflections/_patterns.md\" ])",
+      "Bash([ -f \"reflections/_decisions.md\" ])",
+      "Bash(if git rev-parse --git-dir)",
+      "Bash(/dev/null)",
+      "Bash(then echo \"✅ Git repository detected\")",
+      "Bash(else echo \"⚠️ No git repository - some features limited\")",
+      "Bash(fi)",
+      "Bash(brew upgrade:*)",
+      "Bash(brew list:*)",
+      "Read(//opt/homebrew/lib/node_modules/@anthropic-ai/claude-code/**)",
+      "Bash(claude --version)",
+      "Bash(pkill:*)",
+      "Read(//Users/davidlobo/.cache/**)",
+      "Read(//Users/davidlobo/Library/Caches/**)",
+      "Bash(kill:*)",
+      "Bash(tree:*)",
+      "Bash(gh repo create:*)",
+      "Bash(gh repo edit:*)"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Edit(.env*)",
+      "Edit(*.key)",
+      "Edit(*.pem)",
+      "Write(.env*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Edit(package.json)",
+      "Edit(tsconfig.json)",
+      "Edit(.gitignore)",
+      "Write(*.md)"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '📝 Files edited. Consider testing and committing your changes.'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✨ New files created. Consider running tests to validate.'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🚀 Session started. Check CLAUDE.md for context and workflow guides.'"
+          }
+        ]
+      }
+    ]
+  }
+}
