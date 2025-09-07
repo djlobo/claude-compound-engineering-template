@@ -61,17 +61,56 @@ This guide will help you set up the Claude Code Compound Engineering template in
 
 ### Project-Specific Customization
 
-1. **Update README.md**
+1. **Configure Claude Code Settings**
+   - Copy `.claude/settings.local.json.template` to `.claude/settings.local.json`
+   - OR copy `.claude/settings.local.json.example` for more permissions
+   - Customize permissions for your project's needs
+   - Keep the hooks section for compound engineering experience
+
+2. **Update README.md**
    - Replace with your project's actual README
    - Keep reference to compound engineering setup if desired
 
-2. **Adjust .gitignore**
+3. **Adjust .gitignore**
    - Add project-specific ignore patterns
    - Remove sections that don't apply to your tech stack
 
-3. **Customize Workflow Guides** (optional)
+4. **Customize Workflow Guides** (optional)
    - Edit `.claude/guides/*.md` files for project-specific practices
    - Add technology-specific testing or deployment steps
+
+### Settings Configuration
+
+The template provides two options for Claude Code settings:
+
+#### Option 1: Minimal (Recommended for new users)
+```bash
+cp .claude/settings.local.json.template .claude/settings.local.json
+```
+- Only includes essential hooks for compound engineering
+- No permissions restrictions - relies on Claude Code's defaults
+
+#### Option 2: Comprehensive Permissions
+```bash
+cp .claude/settings.local.json.example .claude/settings.local.json
+```
+- Includes common permissions for typical projects
+- Provides security boundaries and workflow controls
+- Good starting point for customization
+
+#### Customizing Permissions
+Add project-specific permissions to the "allow" array:
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(your-build-command:*)",
+      "Edit(your-config-files)",
+      "WebFetch(domain:your-api.com)"
+    ]
+  }
+}
+```
 
 ## Verification
 

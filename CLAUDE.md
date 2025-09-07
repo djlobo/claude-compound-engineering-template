@@ -49,7 +49,7 @@ When starting any new feature, follow the **Planning Guide** (`.claude/guides/pl
 - Break down into sequential, implementable tasks with specific file paths
 - Plan testing strategy and quality gates
 - **Document complete plan in** `.claude/tasks/TASK_NAME.md`
-- **MANDATORY**: Get David's explicit approval before starting any implementation
+- **MANDATORY**: Get explicit approval before starting any implementation
 
 ### 2. Implementation with Live Plan Updates
 During development, follow the **Implementation Guide** (`.claude/guides/implementation.md`):
@@ -82,7 +82,7 @@ For all commits, follow the **Commit Guide** (`.claude/guides/commit.md`):
 - **Successful patterns**: Store in `reflections/_patterns.md` what works well
 - **Experiment tracking**: Log attempts and outcomes in `reflections/_experiments.md`
 - **Decision records**: Document architectural choices and tradeoffs
-- **Continuous improvement**: Evolve workflow based on what works for David
+- **Continuous improvement**: Evolve workflow based on what works for the developer
 
 ### Structured Experimentation
 When trying risky changes or exploring alternatives:

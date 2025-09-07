@@ -1,0 +1,72 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(**/*)",
+      "Edit(src/**/*)",
+      "Edit(tests/**/*)",
+      "Edit(reflections/**/*)",
+      "Edit(.claude/**/*)",
+      "Write(.claude/**/*)",
+      "Write(reflections/**/*)",
+      "Bash(npm:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "TodoWrite",
+      "Glob(**/*)",
+      "Grep(**/*)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(curl:*)",
+      "Edit(.env*)",
+      "Edit(*.key)",
+      "Edit(*.pem)",
+      "Write(.env*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Edit(package.json)",
+      "Edit(tsconfig.json)",
+      "Edit(.gitignore)",
+      "Write(*.md)"
+    ],
+    "defaultMode": "plan"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '📝 Files edited. Consider testing and committing your changes.'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✨ New files created. Consider running tests to validate.'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🚀 Session started. Check CLAUDE.md for context and workflow guides.'"
+          }
+        ]
+      }
+    ]
+  }
+}
