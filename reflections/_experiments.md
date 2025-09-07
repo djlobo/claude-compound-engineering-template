@@ -1,50 +1,92 @@
-# Experiment Log & Failed Approaches
+# Experiments & Lessons Learned
 
-**Purpose**: Track structured experiments, failed approaches, and lessons learned to avoid repeating mistakes and build systematic problem-solving patterns.
+This file captures experiments, failed approaches, and lessons learned to avoid repeating mistakes. Every failure becomes permanent learning.
 
-## How to Use This Log
+## Experiment Tracking Template
 
-### When to Add Experiments:
-- Before trying a risky or uncertain approach
-- When you're stuck and need to test assumptions 
-- After any failed attempt that taught you something
-- When exploring multiple solution paths
-
-### Experiment Format:
-```
-## Experiment: [Brief Description]
+```markdown
+### Experiment: [Name]
 **Date**: YYYY-MM-DD
-**Hypothesis**: What you thought would work and why
-**Approach**: Specific steps you took
+**Hypothesis**: I think X will solve Y because Z
+**Context**: What problem were we trying to solve?
+**Approach**: What we tried specifically
 **Result**: What actually happened
-**Lesson**: Key insight gained
-**Next Action**: How this changes your approach
+**Analysis**: Why it worked/failed
+**Lesson**: What to do differently next time
+**Status**: Success/Failure/Partial
 ```
 
+## Active Experiments
+
+*Current experiments will be tracked here*
+
+## Completed Experiments
+
+*Finished experiments and their outcomes will be documented here*
+
+## Failed Approaches
+
+### Anti-Pattern Template
+```markdown
+### [Anti-Pattern Name]
+**Problem**: What this approach tries to solve
+**Why It Fails**: Specific reasons it doesn't work
+**Better Alternative**: What to do instead
+**Warning Signs**: How to recognize this anti-pattern
+**Cost**: What happens if you ignore this lesson
+```
+
+*Failed approaches will be documented here to prevent repetition*
+
+## Lessons Learned
+
+### Learning Template
+```markdown
+### [Lesson Title]
+**Context**: When this lesson applies
+**Insight**: The key realization
+**Action**: What to do based on this insight
+**Evidence**: What proved this lesson true
+```
+
+*Key insights from implementation challenges will be captured here*
+
+## Blocked Attempts
+
+### Blocker Template
+```markdown
+### [Blocker Description]
+**Date**: YYYY-MM-DD
+**Context**: What were we trying to achieve?
+**Obstacle**: What specifically blocked us?
+**Attempts Made**: What we tried to overcome it
+**Status**: Still blocked/Resolved/Workaround found
+**Next Steps**: Potential solutions to explore
+**Resolution**: How it was eventually solved (if applicable)
+```
+
+*Current and resolved blockers will be tracked here*
+
 ---
 
-## Experiments Log
+## How to Use This File
 
-### Example Entry (Remove when you add real experiments)
+### When Something Fails
+1. **Don't just fix it** - Document why it failed
+2. **Use experiment template** - Structure your learning
+3. **Identify the pattern** - Is this a one-off or systemic issue?
+4. **Prevent recurrence** - What rule/check would catch this next time?
 
-## Experiment: Initial Setup Validation
-**Date**: 2025-09-05
-**Hypothesis**: Claude Code hooks and settings would work as documented in first try
-**Approach**: Directly implemented complex settings.json with custom hook format
-**Result**: Settings validation failed - hooks need specific array/object structure
-**Lesson**: Always validate configuration against schema before assuming format
-**Next Action**: Follow Claude Code documentation precisely for hook configuration
+### When Stuck
+1. **Document the block** - Don't suffer in silence
+2. **Analyze what you've tried** - Avoid repeating failed attempts
+3. **Hypothesize solutions** - What might work and why?
+4. **Time-box exploration** - Set limits on debugging time
 
----
+### When Experimenting
+1. **Form clear hypothesis** - What do you expect and why?
+2. **Define success criteria** - How will you know if it works?
+3. **Plan rollback** - How to undo if it goes wrong?
+4. **Document everything** - Both success and failure teach us
 
-## Experiment: Claude Code Slash Command Caching 
-**Date**: 2024-09-06
-**Hypothesis**: Editing slash command files should immediately update their behavior when run
-**Approach**: Updated reference.md paths from `tasks/_` to `reflections/_` and tested `/reference` command
-**Result**: Failed - command used cached version with old `tasks/_experiments.md` paths despite file showing `reflections/_experiments.md`
-**Lesson**: Claude Code loads slash commands at session start and caches them in memory. File edits don't automatically reload commands.
-**Next Action**: Must restart Claude Code session after editing slash commands to force reload
-
----
-
-*Add your experiments above this line. Most recent at the top.*
+**Remember**: Every failure makes the system smarter. Every experiment, even failed ones, compound into better engineering decisions.

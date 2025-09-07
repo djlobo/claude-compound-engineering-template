@@ -1,66 +1,99 @@
-# Claude Code Coaching System
+# Claude Code Compound Engineering Template
 
-Personal compound engineering system for systematic skill development.
+A complete compound engineering system for Claude Code that transforms developers into confident compound engineers through systematic workflow guidance and continuous learning.
 
-## Quick Start
+## What This Is
 
-```bash
-claude              # Start in default mode
-claude --plan       # Start in plan mode
-/reference          # See all commands
+This template provides a complete **compound engineering setup** for Claude Code, featuring:
+
+- **Systematic workflow guidance** for planning, implementing, testing, and committing
+- **Automatic learning capture** that builds engineering knowledge over time
+- **Quality gates** that evolve based on experience
+- **Pattern recognition** that accelerates future development
+
+## Core Philosophy: Compound Engineering
+
+Every pull request teaches the system. Every bug becomes a permanent lesson. Every code review updates the defaults. This isn't just AI engineering—it's building systems that get smarter with each iteration.
+
+## How It Works
+
+### Four-Phase Workflow
+1. **Planning**: Structured feature breakdown with detailed task documentation
+2. **Implementation**: Focused development with real-time plan updates
+3. **Testing**: Intelligent validation with failure analysis
+4. **Learning**: Automatic pattern extraction and knowledge capture
+
+### Learning System
+- **Pattern Capture**: Successful approaches become reusable templates
+- **Experiment Tracking**: Failures become permanent lessons
+- **Decision Records**: Architectural choices are documented and evolved
+- **Continuous Improvement**: Every interaction makes the next one better
+
+### Reference Guides
+Comprehensive workflow documentation:
+- `.claude/guides/planning.md` - Systematic feature planning
+- `.claude/guides/implementation.md` - Focused development practices
+- `.claude/guides/testing.md` - Testing strategies and analysis
+- `.claude/guides/commit.md` - Professional git workflow
+
+## Key Features
+
+### Automatic Learning Triggers
+- Captures patterns after 200+ lines of changes
+- Documents experiments and their outcomes
+- Records architectural decisions and rationale
+- Builds reusable knowledge base over time
+
+### Knowledge Management
+- `reflections/_patterns.md` - Successful patterns library
+- `reflections/_experiments.md` - Experiment tracking and lessons learned
+- `reflections/_decisions.md` - Architectural decision records
+- `future_upgrades.md` - Roadmap for advanced compound engineering
+
+### Smart Coaching
+- Context-aware nudging and guidance
+- Adaptive coaching intensity
+- Quality gates that prevent recurring issues
+- Proactive next-action suggestions
+
+## Template Structure
+
+```
+.claude/
+  ├── guides/           # Workflow reference materials
+  └── settings.local.json # Permissions and automation hooks
+reflections/            # Learning and knowledge capture
+  ├── _patterns.md      # Successful pattern library
+  ├── _experiments.md   # Experiment tracking
+  └── _decisions.md     # Architectural decisions
+CLAUDE.md              # Main coaching system configuration
+future_upgrades.md     # Advanced compound engineering roadmap
 ```
 
-## Directory Structure
+## Getting Started
 
-```
-cc-setup/
-├── reflections/           # Learning & knowledge base
-│   ├── _patterns.md      # Successful approaches
-│   ├── _experiments.md   # Failed attempts & lessons
-│   ├── _decisions.md     # Architecture choices
-│   └── *.md              # Feature documentation
-├── .claude/              # Claude Code configuration
-│   ├── agents/           # AI specialists
-│   ├── commands/         # Slash commands
-│   ├── tasks/            # Generated task plans
-│   └── settings.local.json
-├── CLAUDE.md             # Coaching instructions
-└── README.md            # This file
-```
+1. **Copy this template** to your new project
+2. **Review CLAUDE.md** to understand the coaching system
+3. **Start with planning** - Every feature begins with structured planning
+4. **Follow the workflow** - Planning → Implementation → Testing → Learning
+5. **Capture everything** - Let the system learn from your work
 
-## Core Workflow
+## Target Users
 
-1. **Plan**: `/plan <feature>` - Create structured plan
-2. **Implement**: `/do <task-id>` - Execute specific task
-3. **Test**: `/test` - Run tests with analysis
-4. **Commit**: `/commit <message>` - Quality-gated commit
-5. **Review**: `/review` - Code quality check
-6. **Learn**: `/retro` - Capture lessons
+Ideal for developers who want to:
+- **Ship faster** without accumulating technical debt
+- **Build systematically** with consistent quality
+- **Learn continuously** from every piece of work
+- **Compound their effectiveness** over time
 
-## Advanced Commands
+Whether you're a founder building products, an engineer scaling systems, or a team wanting consistent practices, this template provides the foundation for compound engineering mastery.
 
-- `/experiment <hypothesis>` - Safe trials with rollback
-- `/reference` - Command reference & status
+## Evolution Path
 
-## Philosophy
+This template includes a complete roadmap (`future_upgrades.md`) for evolving into advanced compound engineering with:
+- Multi-agent orchestration
+- Self-improving quality gates  
+- Automated pattern recognition
+- Continuous system evolution
 
-- **Plan First**: Think deeply before coding (Opus model)
-- **Build Fast**: Implement efficiently (Sonnet model)
-- **Learn Always**: Document patterns & failures
-- **Quality Gates**: Automated checks prevent debt
-- **Compound Growth**: Small daily improvements
-
-## Configuration
-
-- Models: Opus 4.1 (planning), Sonnet 4 (implementation)
-- Default mode: Plan (safe exploration)
-- Permissions: Controlled file access
-- Hooks: Contextual coaching
-
-## Tips
-
-- Follow the coaching nudges
-- Document failures in `reflections/_experiments.md`
-- Capture successes in `reflections/_patterns.md`
-- Use `/experiment` for risky changes
-- Run `/retro` after each feature
+The system is designed to grow with you, becoming more powerful and personalized with each use.
